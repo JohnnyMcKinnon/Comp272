@@ -1,0 +1,189 @@
+/*
+ * COMP 272 â€” Programming Assignment 1 
+ * Student: Johnny McKinnon   Section: Comp272 001
+ *
+ * IMPORTANT:
+ * - Implement the TODO methods. Keep the method signatures unchanged.
+ * - Do NOT modify Main_v3.java (driver).
+ * - You may add private helpers and fields if needed.
+ */
+
+import java.util.*;
+
+public class HW1 {
+
+    /* =========================
+     * Part 1 â€” Linked List (SLL)
+     * ========================= */
+    public static class SinglyLinkedList {
+        static class Node {
+            int data;
+            Node next;
+            Node(int d){ data = d; }
+        }
+
+        private Node head;
+        private int size = 0;
+
+        // Utilities for testing/demo
+        public void addLast(int x){
+            Node nn = new Node(x);
+            if(head == null){ head = nn; }
+            else{
+                Node cur = head;
+                while(cur.next != null) cur = cur.next;
+                cur.next = nn;
+            }
+            size++;
+        }
+
+        public int size() { return size; }
+
+        @Override public String toString(){
+            StringBuilder sb = new StringBuilder("[");
+            Node cur = head;
+            while(cur != null){
+                sb.append(cur.data);
+                cur = cur.next;
+                if(cur != null) sb.append(", ");
+            }
+            sb.append("]");
+            return sb.toString();
+        }
+        /**
+         * Remove all duplicate values, preserving the first occurrence.
+         * Example: [3,1,3,2,1] -> [3,1,2]
+         */
+        public void removeDuplicates(){
+            // TODO: implement using a HashSet or O(n^2) two-pointer approach
+             Set<Integer> seen=new HashSet<>();
+             Node cur=head;
+             Node prev=null;
+            while(cur!=null){
+                if(seen.contains(cur.data)){
+                    prev.next=cur.next;
+                    size--;
+                }
+                else{
+                    seen.add(cur.data);
+                    prev=cur;
+                }
+                cur=cur.next;
+            }
+        }
+        /**
+         * Reverse the entire list by using a stack (java.util.Stack).
+         * You must use a Stack in your solution (push values or nodes).
+         * Example: [1,2,3,4] -> [4,3,2,1]
+         * Time: O(n), Extra Space: O(n).
+         */
+        public void reverse(){
+// TODO: implement using java.util.Stack
+            Stack<Node> stack=new Stack<>();
+            Node cur = head;
+            while (cur != null){
+                stack.push(cur);
+                cur=cur.next;
+            }
+            if(stck.isEmpty());
+            return;
+            head=stack.pop();
+            cur=head;
+            while(!stack.isEmpty()){
+                cur.next=stack.pop();
+                cur.cur.next;
+            }
+            cur.next=null;
+        }
+
+        /**
+         * Return the value of the n-th node from the end (1-based).
+         * Example: [10,20,30,40,50], n=2 -> 40.
+         * Use a single pass (two pointers). Throw NoSuchElementException if invalid.
+         */
+        public int getNthFromEnd(int n){
+            // TODO: implement two-pointer technique
+            if(n<=0)throw new NoSuchElementException("n MUST be +");
+            Node fast=head;
+            Node slow=head;
+            for(int i=0; i<n; i++){
+                of(fast==null)throw new NoSuchElementException("n out of range");
+                fast=fast.next;
+            }            
+            while(fast!=null){
+                fast=fast.next;
+                slow=slow.next;
+            }
+            return slow.data;
+        }
+    }
+    /* =========================
+     * Part 2 â€” Stack
+     * ========================= */
+
+    /**
+     * STACK: Return true if input is a palindrome ignoring case and spaces.
+     * Examples: "Race Car" -> true, "racecar" -> true, "ab ca" -> false.
+     * Time: O(n), Extra Space: O(n).
+     * Use java.util.Stack<Character>.
+     */
+    public static boolean isPalindrome(String input){
+        Stack<Character> st = new Stack<>();
+        String s = input.toLowerCase().replaceAll("\\s+", "");
+        // TODO: implement method here
+        int len=s.length();
+        for(int i=0; i<len/2; i++;){
+            st.push(S.charAt(i));
+        }
+        int start=(len%2==0)?len/2:len/2+1;
+        for(int i=start; i<len; i++){
+        if(st.pop()!=s.charAt(i));
+        return false;
+        }
+        return true;
+    }
+    /* =========================
+     * Part 3 â€” Algorithm Analysis
+     * ========================= */
+
+    public static int algorithmAnalysis1(int n, int m) {
+        int a = 0, b = 0;
+
+        for (int i=0; i < n; i++) a++;   // simulate work
+        for (int j=0; j < m; j++) b++;   // simulate work
+
+        /*
+         * Select the correct option listed below:
+         *   1. O(N * M) time, O(1) space XXX
+         *   2. O(N + M) time, O(N + M) space XXX
+         *   3. O(N + M) time, O(1) space YESSSSSSSSS
+         *   4. O(N * M) time, O(N + M) space XXX
+         *
+         * TODO: return the answer (which option is correct), in the return statement
+        */
+
+        // RETURN THE CORRECT OPTION NUMBER LISTED ABOVE
+        return 3;
+    }
+
+
+    public static int algorithmAnalysis2(int n) {
+        int i, j, k = 0;
+        for (i = n/2; i <= n; i++)
+            for ( j = 2; j <= n; j = j*2 )
+                k += n/2;
+
+        /*
+         * Select the correct option listed below:
+         *   1. O(N) time XXX
+         *   2. O(N log N) time YESSSS
+         *   3. O(N^2) time XXX
+         *   4. O(N^2 log N) time XXX
+         *
+         * TODO: return the answer (which option is correct), in the return statement
+         */
+
+        // RETURN THE CORRECT OPTION LISTED ABOVE
+        return 2;
+    }
+}
