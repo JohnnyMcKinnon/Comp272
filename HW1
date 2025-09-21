@@ -20,7 +20,7 @@ public class HW1 {
             int data;
             Node next;
             Node(int d){ data = d; }
-        }
+        } // class Node
 
         private Node head;
         private int size = 0;
@@ -35,7 +35,7 @@ public class HW1 {
                 cur.next = nn;
             }
             size++;
-        }
+        }//Method addLast
 
         public int size() { return size; }
 
@@ -49,7 +49,7 @@ public class HW1 {
             }
             sb.append("]");
             return sb.toString();
-        }
+        }//String toString
         /**
          * Remove all duplicate values, preserving the first occurrence.
          * Example: [3,1,3,2,1] -> [3,1,2]
@@ -70,7 +70,7 @@ public class HW1 {
                 }
                 cur=cur.next;
             }
-        }
+        } //Method removeDuplicates
         /**
          * Reverse the entire list by using a stack (java.util.Stack).
          * You must use a Stack in your solution (push values or nodes).
@@ -80,21 +80,25 @@ public class HW1 {
         public void reverse(){
 // TODO: implement using java.util.Stack
             Stack<Node> stack=new Stack<>();
-            Node cur = head;
-            while (cur != null){
+            Node cur=head;
+            //push all nodes in stack:
+            while(cur != null){
                 stack.push(cur);
                 cur=cur.next;
             }
-            if(stck.isEmpty());
-            return;
+            if(stack.isEmpty()){
+                return;
+            }
+            //pop from stack to reverse the list order
             head=stack.pop();
             cur=head;
+            
             while(!stack.isEmpty()){
                 cur.next=stack.pop();
-                cur.cur.next;
+                cur=cur.next;
             }
             cur.next=null;
-        }
+        } //Method reverse
 
         /**
          * Return the value of the n-th node from the end (1-based).
@@ -103,19 +107,23 @@ public class HW1 {
          */
         public int getNthFromEnd(int n){
             // TODO: implement two-pointer technique
+
+            //invalid input error message
             if(n<=0)throw new NoSuchElementException("n MUST be +");
             Node fast=head;
             Node slow=head;
+            //move fast n steps forward
             for(int i=0; i<n; i++){
-                of(fast==null)throw new NoSuchElementException("n out of range");
+                if(fast==null)throw new NoSuchElementException("n out of range");
                 fast=fast.next;
             }            
+            //move both fast and slow until fast reaches null
             while(fast!=null){
                 fast=fast.next;
                 slow=slow.next;
             }
             return slow.data;
-        }
+        } //Method getNthFromEnd
     }
     /* =========================
      * Part 2 â€” Stack
@@ -132,16 +140,19 @@ public class HW1 {
         String s = input.toLowerCase().replaceAll("\\s+", "");
         // TODO: implement method here
         int len=s.length();
-        for(int i=0; i<len/2; i++;){
-            st.push(S.charAt(i));
+        //push first half of string onto the stack
+        for(int i=0; i<len/2; i++){
+            st.push(s.charAt(i));
         }
+        //Find starting element on second half of string
         int start=(len%2==0)?len/2:len/2+1;
         for(int i=start; i<len; i++){
-        if(st.pop()!=s.charAt(i));
+        if(st.pop()!=s.charAt(i)){
         return false;
         }
-        return true;
     }
+        return true;
+    } //boolean isPalindrome
     /* =========================
      * Part 3 â€” Algorithm Analysis
      * ========================= */
@@ -164,7 +175,7 @@ public class HW1 {
 
         // RETURN THE CORRECT OPTION NUMBER LISTED ABOVE
         return 3;
-    }
+    } //algorithm algorithmAnalysis1
 
 
     public static int algorithmAnalysis2(int n) {
@@ -185,5 +196,5 @@ public class HW1 {
 
         // RETURN THE CORRECT OPTION LISTED ABOVE
         return 2;
-    }
-}
+    } //algorithm algorithmAnalysis2
+} //class HW1
