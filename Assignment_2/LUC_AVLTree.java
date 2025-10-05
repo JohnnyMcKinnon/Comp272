@@ -96,7 +96,12 @@ public class LUC_AVLTree {
      */
     private Node LLRotation(Node x) {
         // TODO: implement, then UPDATE heights, then return new root
-        return x; // placeholder so code compiles
+        Node y=x.leftChild;
+        x.leftChild=y.rightChild;
+        y.rightChild=x;
+        x.height=getMax(getHeight(x.leftChild), getHeight(x.rightChild))+1;
+        y.height=getMax(getHeight(y.leftChild), getHeight(y.rightChild))+1;
+        return y;
     }
 
     /**
@@ -105,7 +110,12 @@ public class LUC_AVLTree {
      */
     private Node RRRotation(Node x) {
         // TODO: implement, then UPDATE heights, then return new root
-        return x; // placeholder so code compiles
+        Node y=x.rightChild;
+        x.rightChild=y.leftChild;
+        y.leftChild=x;
+        x.height=getMax(getHeight(x.leftChild), getHeight(x.rightChild))+1;
+        y.height=getMax(getHeight(y.leftChild), getHeight(y.rightChild))+1;
+        return y;
     }
 
     /**
@@ -114,7 +124,8 @@ public class LUC_AVLTree {
      */
     private Node LRRotation(Node x) {
         // TODO: implement using your other rotations (small and clean)
-        return x; // placeholder so code compiles
+        x.leftChild=RRRotation(x.leftChild);
+        return LLRotation(x);
     }
 
     /**
@@ -123,6 +134,7 @@ public class LUC_AVLTree {
      */
     private Node RLRotation(Node x) {
         // TODO: implement using your other rotations (small and clean)
-        return x; // placeholder so code compiles
+        x.rightChild=LLRotation(x.rightChild);
+        return RRRotation(x);
     }
 }

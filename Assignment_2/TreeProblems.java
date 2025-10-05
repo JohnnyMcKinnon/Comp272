@@ -21,10 +21,15 @@ public class TreeProblems {
    * Return a TreeSet so the result is sorted ascending.
    */
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
-
     // TODO: implement using unions/intersections, or direct iteration.
     // Keep it short. Aim for a few lines only.
-    return setA; // placeholder so code compiles
+    Set<Integer> result=new TreeSet<>(setA);
+    for(int val:setB){
+      if(!result.add(val)){
+        result.remove(val);
+      }
+    }
+    return result; // placeholder so code compiles
   }
 
   /**
@@ -34,8 +39,8 @@ public class TreeProblems {
    * Modify the map in place. Keep this neat and safe (no concurrent mod errors).
    */
   public static void removeEven(Map<Integer, String> treeMap) {
-
+    treeMap.keySet().removeIf(k -> k%2==0);
     // TODO: implement (one simple approach uses keySet().removeIf(...))
-    return; // placeholder so code compiles
+    return;
   }
 }

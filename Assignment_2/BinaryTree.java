@@ -62,6 +62,14 @@ public class BinaryTree {
        Visit every node. If node.data == oldVal, change it to newVal. */
     protected void replaceValueHelper(BTNode node, int oldVal, int newVal) {
         // TODO: implement (use simple recursion). If node is null, just return.
+        if(node==null){
+            return;
+        }
+        if(node.data==oldVal){
+            node.data=newVal;
+        }
+        replaceValueHelper(node.left, oldVal, newVal);
+        replaceValueHelper(node.right, oldVal, newVal);
     }
 
     /* averageHelper:
@@ -69,6 +77,13 @@ public class BinaryTree {
        Use post-order style: get left pair, right pair, then add current node. */
     protected int[] averageHelper(BTNode node) {
         // TODO: implement and return {sum, count}
+        if(node==null){
         return new int[]{0, 0}; // placeholder so code compiles
+        }
+        int[] left=averageHelper(node.left);
+        int[] right=averageHelper(node.right);
+        int sum=left[0]+right[0]+node.data;
+        int count=left[1]+right[1]+1;
+        return new int[]{sum,count};
     }
 }
