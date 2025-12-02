@@ -77,10 +77,10 @@ public class CuckooHash<K, V> {
 		/*
 		 * Getters and Setters
 		 */
-		private K getBucKey() {
+		public K getBucKey() {
 			return bucKey;
 		}
-		private V getValue()  { return value;  }
+		public V getValue()  { return value;  }
 
 	}
 
@@ -89,7 +89,7 @@ public class CuckooHash<K, V> {
 	 * Hash functions, hash1 and hash2
 	 */
 	private int hash1(K key) 	{ return Math.abs(key.hashCode()) % CAPACITY; }
-	private int hash2(K key) 	{ return (a * b + Math.abs(key.hashCode())) % CAPACITY; }
+	private int hash2(K key) 	{ return (a * Math.abs(key.hashCode()) + b) % CAPACITY; }
 
 
 	/**
@@ -282,7 +282,7 @@ public class CuckooHash<K, V> {
         rehash();
 
         //Try again after rehashing
-        put(curKey, curVal);
+        put(key, value);
     }
 
 	/**
@@ -316,21 +316,25 @@ public class CuckooHash<K, V> {
 	 * @param value the value to remove
 	 * @return successful removal
 	 */
+
 	public boolean remove(K key, V value) {
-		int pos1 = hash1(key);
-		int pos2 = hash2(key);
-		if (table[pos1] != null && table[pos1].getValue().equals(value)) {
-			table[pos1] = null;
-			return true;
-		}
-		else if (table[pos2] != null && table[pos2].getValue().equals(value)) {
-			table[pos2] = null;
-			return true;
-		}
-		return false;
-	}
+    int pos1 = hash1(key);
+    int pos2 = hash2(key);
 
+    if (table[pos1] != null &&
+        table[pos1].getBucKey().equals(key) &&
+        table[pos1].getValue().equals(value)) {
+        table[pos1] = null;
+        return true;
+    }
 
+    else if (table[pos2] != null && table[pos2].getBucKey().equals(key) && 
+	table[pos2].getValue().equals(value)) {
+        table[pos2] = null;
+        return true;
+    }
+    return false;
+}
 	/**
 	 * Method printTable
 	 *
