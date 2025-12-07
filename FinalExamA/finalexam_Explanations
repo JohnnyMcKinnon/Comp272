@@ -1,0 +1,69 @@
+/*
+
+----------------------------------------------------
+
+Exercise 1:
+
+Part 1 – Singly Linked List findMiddle():
+Use two pointers: a slow pointer that moves 1 node at a time, and a fast pointer
+that moves 2 nodes at a time. When the fast pointer reaches the end, the slow
+pointer is at the middle. For even-sized lists, this returns the (n+1)th element as
+required. 
+Runtime: O(n) because each pointer traverses at most n nodes.
+
+Part 2 – Doubly Linked List findMiddle():
+Use two pointers: left starts at head, right starts at tail. Both move inward
+one node at a time. They meet or cross at the middle, and left is the middle node.
+Each pointer walks ~n/2 steps.
+Runtime: O(n).
+
+--------------------------------------------------
+
+Exercise 2 – Browser Navigation System:
+
+visit()     → push current onto back stack + clear forward stack → O(1)
+back()      → pop from back + push current to forward → O(1)
+forward()   → pop from forward + push current to back → O(1)
+
+All operations are constant time because stack push/pop are O(1).
+
+--------------------------------------------------
+
+Exercise 3 – Certification Exam Ordering:
+
+The graph must be a DAG (Directed Acyclic Graph). Any cycle makes it impossible
+to complete all exams.
+
+Algorithm summary:
+- Build adjacency list graph[] storing exam → exams dependent on it.
+- Maintain a state array:
+    0 = unvisited
+    1 = visiting (currently in DFS stack)
+    2 = done (fully processed)
+- DFS detects a cycle if it reaches a node in state 1.
+- Nodes in state 2 are skipped because they have already been checked.
+- If any DFS call finds a cycle → return false.
+- If no cycle exists → return true.
+
+--------------------------------------------------
+
+Exercise 4 – Selection Sort:
+
+Selection sort repeatedly finds the smallest (ascending) or largest (descending)
+element in the unsorted portion of the array and swaps it into position i.
+The sorted portion grows from left to right.
+No built-in sorting is used.
+
+--------------------------------------------------
+
+Exercise 5 – Min Heap Insertion:
+
+To insert into a min-heap:
+1. Place the new value at the end of the heap array.
+2. Compare it with its parent.
+3. If the parent is larger, swap upward (percolate up).
+4. Repeat until the min-heap property is restored.
+
+--------------------------------------------------
+
+*/
