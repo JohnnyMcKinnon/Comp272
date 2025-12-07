@@ -3,6 +3,7 @@ import java.util.Stack;
 
 /**
  * COMP 272 – Final Exam
+ * Johnny McKinnon
  *
  * Students:
  *  - Do NOT change class or method names or signatures.
